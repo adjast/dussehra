@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>शुभ दशहरा | Happy Dussehra! 🏹🔥</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle, #2b0202 0%, #0d0000 100%);
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding: 6px 10px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Live Fireworks Canvas */
+    #fireworksCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Floating Dussehra Icons */
+    .floating-item {
+      position: fixed;
+      font-size: 18px;
+      z-index: 1;
+      pointer-events: none;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.9; }
+      80% { opacity: 0.8; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+        /* Clean Ad Container */
+    .ad-box {
+      width: 100%;
+      max-width: 330px;
+      min-height: 50px;
+      height: auto;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 5;
+      margin: 6px auto;
+      overflow: hidden;
+    }
+
+
+    /* Main Card */
+    .card {
+      width: 100%;
+      max-width: 350px;
+      border: 2px solid #ff9900;
+      box-shadow: 0 0 25px rgba(255, 115, 0, 0.5), inset 0 0 15px rgba(255, 165, 0, 0.2);
+      border-radius: 16px;
+      padding: 12px 14px;
+      position: relative;
+      z-index: 5;
+      margin: 6px auto;
+      background: linear-gradient(rgba(18, 3, 3, 0.78), rgba(18, 3, 3, 0.84)), url('dussehra.gif') center/cover no-repeat;
+      backdrop-filter: blur(2px);
+    }
+
+    .sender-box {
+      font-size: 21px;
+      font-weight: 800;
+      color: #ffe600;
+      letter-spacing: 0.5px;
+      animation: pulseGlow 1.4s infinite alternate;
+    }
+
+    .sub-sender {
+      color: #ffd27f;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #ff3b3b;
+      text-shadow: 0 0 10px #ff9900;
+      margin: 6px 0 4px 0;
+    }
+
+    .shayari {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #f1f2f6;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 10px;
+      border-radius: 8px;
+      margin: 6px 0;
+      border-left: 3px solid #ff9900;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px 12px;
+      border: 2px solid #ff9900;
+      border-radius: 20px;
+      font-size: 14px;
+      text-align: center;
+      outline: none;
+      background: #ffffff;
+      color: #000;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+
+    .main-whatsapp-btn {
+      width: 90%;
+      margin: 8px auto 6px auto;
+      padding: 9px;
+      background: linear-gradient(45deg, #25D366, #128C7E);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 14.5px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      animation: btnBounce 1.5s infinite;
+    }
+
+    .social-section {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+    }
+
+    .social-title {
+      font-size: 11.5px;
+      color: #f5cd79;
+      margin-bottom: 6px;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .social-icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .social-icon-btn:active { transform: scale(0.9); }
+    .btn-wa { background: #25D366; }
+    .btn-fb { background: #1877F2; }
+    .btn-tg { background: #24A1DE; }
+    .btn-x  { background: #000000; border: 1px solid #444; }
+    .btn-more { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+
+    .social-icon-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #ffffff;
+    }
+
+    @keyframes pulseGlow {
+      from { text-shadow: 0 0 5px #ffcc00; transform: scale(1); }
+      to { text-shadow: 0 0 16px #ff3838; transform: scale(1.03); }
+    }
+
+    @keyframes btnBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live Background Canvas -->
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Floating Festive Items -->
+  <div class="floating-item" style="left: 6%; animation-duration: 6s; animation-delay: 0s;">🏹</div>
+  <div class="floating-item" style="left: 28%; animation-duration: 7s; animation-delay: 1.5s;">🔥</div>
+  <div class="floating-item" style="left: 70%; animation-duration: 5.5s; animation-delay: 0.8s;">✨</div>
+  <div class="floating-item" style="left: 88%; animation-duration: 6.5s; animation-delay: 2s;">🏹</div>
+
+  <!-- TOP BANNER AD (Adsterra Code yahan paste karein) -->
+  <div class="ad-box">
+    <script>
+  atOptions = {
+    'key' : '1fe0c73890ebbd5cc562ef1f19b6bc60',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://bicea.org/22/1fe0c73890ebbd5cc562ef1f19b6bc60"></script>
+  </div>
+
+  <div class="card">
+    <div class="sender-box" id="senderName">Hamari Taraf Se</div>
+    <div class="sub-sender">Aapko Aur Aapke Parivar Ko</div>
+
+    <h1 class="title">विजयदशमी की शुभकामनाएं 🏹</h1>
+
+    <div class="shayari">
+      रावण तो हर साल जलता है कागज़ और लकड़ी का,
+काश इस बार लोगों के अंदर का गुरूर, और हमारे हिस्से का दर्द भी जल जाए।
+दशहरे की हार्दिक शुभकामनाएँ! 🔥
+    </div>
+
+    <input type="text" id="userName" placeholder="Apna Naam Yahan Likhein...">
+    <br>
+
+    <button class="main-whatsapp-btn" onclick="shareTo('whatsapp')">
+      <svg style="width:18px; height:18px; fill:#fff;" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+      </svg>
+      WhatsApp Par Bhejein
+    </button>
+
+    <div class="social-section">
+      <p class="social-title">Ya doosre apps par be share kar sakte hain:</p>
+      <div class="social-buttons">
+        <button class="social-icon-btn btn-wa" onclick="shareTo('whatsapp')">
+          <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </button>
+        <button class="social-icon-btn btn-fb" onclick="shareTo('facebook')">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </button>
+        <button class="social-icon-btn btn-tg" onclick="shareTo('telegram')">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.943z"/></svg>
+        </button>
+        <button class="social-icon-btn btn-x" onclick="shareTo('twitter')">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button class="social-icon-btn btn-more" onclick="shareTo('native')">
+          <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM BANNER AD (Adsterra Code yahan paste karein) -->
+  <div class="ad-box">
+    <script>
+  atOptions = {
+    'key' : 'd34ccfff3ca9263ca1b45b6ae0b083e3',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bicea.org/22/d34ccfff3ca9263ca1b45b6ae0b083e3"></script>
+  </div>
+
+  <script>
+    // URL param check
+    const urlParams = new URLSearchParams(window.location.search);
+    const sender = urlParams.get('name');
+    if (sender) {
+      document.getElementById('senderName').innerText = decodeURIComponent(sender);
+    }
+
+    // Share Handler
+    function getShareData() {
+      const name = document.getElementById('userName').value.trim();
+      if (!name) {
+        alert("Pehle apna naam likhein!");
+        return null;
+      }
+      const siteUrl = window.location.origin + window.location.pathname;
+      const shareUrl = `${siteUrl}?name=${encodeURIComponent(name)}`;
+      const message = `🏹 *${name}* ne aapke liye Dussehra par ek sandesh bheja hai! ✨🔥\nIse dekhne ke liye link par touch karein:\n👉 ${shareUrl}`;
+      return { name, shareUrl, message };
+    }
+
+    function shareTo(platform) {
+      const data = getShareData();
+      if (!data) return;
+
+      if (platform === 'whatsapp') {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(data.message)}`, '_blank');
+      } 
+      else if (platform === 'facebook') {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(data.shareUrl)}`, '_blank');
+      } 
+      else if (platform === 'telegram') {
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(data.shareUrl)}&text=${encodeURIComponent(data.message)}`, '_blank');
+      } 
+      else if (platform === 'twitter') {
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(data.message)}`, '_blank');
+      } 
+      else if (platform === 'native') {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Happy Dussehra Wish',
+            text: data.message,
+            url: data.shareUrl
+          }).catch(() => {});
+        } else {
+          navigator.clipboard.writeText(data.message);
+          alert("Link copy ho gaya hai!");
+        }
+      }
+    }
+
+    // BACKGROUND LIVE FIREWORKS & SPARKS SCRIPT
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const colors = ['#ff4500', '#ffd700', '#ff8c00', '#ff0055', '#00ffcc', '#ffffff'];
+
+    function createFirework() {
+      const targetX = Math.random() * width;
+      const targetY = Math.random() * (height * 0.7);
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const count = 25;
+
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 / count) * i;
+        const speed = Math.random() * 2.5 + 1.2;
+        particles.push({
+          x: targetX,
+          y: targetY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          alpha: 1,
+          color: color,
+          size: Math.random() * 2 + 1
+        });
+      }
+    }
+
+    // Har 700ms me ek naya blast generate hoga
+    setInterval(createFirework, 700);
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.03; // gravity
+        p.alpha -= 0.015;
+
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
